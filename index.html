@@ -24,7 +24,13 @@
     <h1 class="title">calc</h1>
     <div class="theme">
       <p>theme</p>
-      <input type="range" name="theme" id="theme" min="1" max="3">
+      <input type="range" name="theme" id="theme" value="1" min="1" max="3" list="tickmarks">
+      <datalist id="tickmarks">
+        <option value="1" label="1">1</option>
+        <option value="2" label="2">2</option>
+        <option value="3" label="3">3</option>
+        <option value="3" label="3">3</option>
+      </datalist>
     </div>
   </header>
   <div>
@@ -57,7 +63,7 @@
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Your Name Here</a>.
+    Coded by <a href="#">William Owen</a>.
   </div>
 </body>
 </html>

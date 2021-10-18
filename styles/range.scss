@@ -1,0 +1,87 @@
+@import 'themes.scss';
+
+
+input[type=range] {
+  width: 100%;
+  margin: -3.4px 0;
+  background-color: transparent;
+  -webkit-appearance: none;
+}
+// input[type=range]::
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  background: $t1-toggle-background;
+  border: none;
+  padding: 0 5px;
+  border-radius: 24.1px;
+  width: 100%;
+  height: 23.8px;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  margin-top: 3.2px;
+  width: 16px;
+  height: 17px;
+  background: $t1-key-background-toggle;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
+
+input[type=range]::-moz-range-track {
+  background: $t1-toggle-background;
+  border:  none;
+  border-radius: 24.1px;
+  width: 100%;
+  height: 23.8px; 
+  padding: 0 5px;
+  cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+  width: 16px;
+  height: 17px;
+  background: $t1-key-background-toggle;
+  border: none;
+  //  padding: 0 5px;
+  border-radius: 50px;
+  cursor: pointer;
+}
+input[type=range]::-ms-track {
+  background: transparent;
+  border-color: transparent;
+  padding: 0 5px;
+  border-width: 0 0;
+  color: transparent;
+  width: 100%;
+  height: 23.8px;
+  cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+  background: $t1-toggle-background;
+  border: 0.2px solid #010101;
+  border-radius: 48.2px;
+}
+input[type=range]::-ms-fill-upper {
+  background: $t1-toggle-background;
+  border: 0.2px solid #010101;
+  border-radius: 48.2px;
+}
+input[type=range]::-ms-thumb {
+  width: 16px;
+  height: 17px;
+  background: $t1-toggle-background;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 0px;
+  /*Needed to keep the Edge thumb centred*/
+}
+input[type=range]:focus::-ms-fill-lower {
+  background: $t1-toggle-background;
+}
+input[type=range]:focus::-ms-fill-upper {
+  background: $t1-toggle-background;
+}

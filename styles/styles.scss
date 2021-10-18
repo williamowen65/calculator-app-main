@@ -1,5 +1,9 @@
+@use "range.scss";
+@import 'themes.scss';
+
+
 body {
-  background: hsl(222, 26%, 31%);
+  background: $t1-main-background;
   // width: 50%;
   // margin: auto;
   display: flex;
@@ -7,23 +11,32 @@ body {
   font-family: Spartan;
   font-weight: 700;
   // font-size: 32px;
- 
- 
 }
+$padding: 25px;
 .calc{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 80vw;
+  width: 80vw;
+  min-width: 320px;
+  max-width: 420px !important;
   header{
     display: flex;
     justify-content: space-between;
     .theme{
       display: flex;
       align-items: center;
-      input {
-        width: 44px;
+      justify-content: space-around;
+      // width: 125px;
+      font-size: 12px;
+      input[type="range"]{
+        width: 60px;
+        padding-left:20px;
+       &::-webkit-slider-runnable-track{
+        //  height: px;
+        cursor: pointer;
+       }
       }
     }
   }
@@ -35,14 +48,15 @@ body {
     text-align: end;
     background: hsl(224, 36%, 15%);
     border: none;
-    padding: 0 7px;
+    padding: 0 $padding;
   }
+  
   form {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     background-color: hsl(224, 36%, 15%);
-    grid-gap: 10px;
-    padding: 10px;
+    grid-gap: 15px;
+    padding: $padding;
     input[value='reset']{
       grid-column: 1/3;
     }
