@@ -127,6 +127,15 @@ body {
 .calc header .theme input[type=range]::-webkit-slider-runnable-track {
   cursor: pointer;
 }
+.calc header .theme datalist {
+  display: inherit;
+  position: absolute;
+  top: 7px;
+  right: 9px;
+}
+.calc header .theme datalist option {
+  padding: 0 5px;
+}
 .calc input[name=total] {
   width: 100%;
   box-sizing: border-box;
