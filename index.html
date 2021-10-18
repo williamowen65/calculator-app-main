@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Calculator app</title>
   <link rel="stylesheet" href="styles.css">
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
@@ -19,20 +21,20 @@
   <div class="calc">
     
   <header>
-    <h1>calc</h1>
+    <h1 class="title">calc</h1>
     <div class="theme">
       <p>theme</p>
       <input type="range" name="theme" id="theme" min="1" max="3">
     </div>
   </header>
   <div>
-    <input type="text" name="total">
+    <input type="text" name="total" class="total">
   </div>
-  <form onsubmit="calc">
+  <form onsubmit="calc" class="keys">
     <input type="button" value="7">
     <input type="button" value="8">
     <input type="button" value="9">
-    <input type="button" value="del">
+    <input type="button" value="del" class="del">
     <input type="button" value="4">
     <input type="button" value="5">
     <input type="button" value="6">
@@ -45,8 +47,8 @@
     <input type="button" value="0">
     <input type="button" value="/">
     <input type="button" value="x">
-    <input type="button" value="reset">
-    <input type="button" value="=">
+    <input type="button" value="reset" class="reset">
+    <input type="button" value="=" class="submit">
   </form>
 
   </div>
