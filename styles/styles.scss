@@ -1,0 +1,45 @@
+body {
+  background: hsl(222, 26%, 31%);
+  // width: 50%;
+  // margin: auto;
+  display: flex;
+  flex-direction: column;
+ 
+}
+.calc{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 80vw;
+  header{
+    display: flex;
+    justify-content: space-between;
+    .theme{
+      display: flex;
+      align-items: center;
+      input {
+        width: 44px;
+      }
+    }
+  }
+  input[name='total']{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    height: 30px;
+    text-align: end;
+  }
+  form {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    input[value='reset']{
+      grid-column: 1/3;
+    }
+    input[value='=']{
+      grid-column: 3/5;
+    }
+  }
+}
+
+
