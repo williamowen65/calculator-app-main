@@ -1,9 +1,9 @@
 import _ from 'lodash';
 
 class Calculator {
-  parent;
+  screen;
   constructor(el) {
-    this.parent = el;
+    this.screen = el.querySelector('.total');
     console.log(el);
     el.addEventListener('click', this.handleClick);
     this.configure()
@@ -12,6 +12,8 @@ class Calculator {
     if(e.target.type === 'button'){
       console.log('sdnfjlksdfjkl', e.target.type);
       console.log(e.target.value);
+
+     this.screen.value += e.target.value;
     }
   }
   configureTheme = (input) => {
