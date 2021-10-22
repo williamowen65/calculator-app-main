@@ -32,7 +32,12 @@ export default class Calculator {
       //   this.intProxy = '0'; 
         
       // } else {
-        this.intProxy += string; 
+        if(string !== 'del'){
+          this.intProxy += string; 
+        } else {
+          this.intProxy = this.intProxy.slice(0,-1);
+        }
+        console.log(this.intProxy);
       // }
       // Add to intProxy
       if(this.intProxy.length > 3) {
@@ -61,7 +66,12 @@ export default class Calculator {
             }
             console.log('int: ', this.intProxy);
             console.log(this.intProxy[0] == '0', this.intProxy);
-            this.currentView += this.intProxy[this.intProxy.length - 1]
+            if(string !== 'del'){
+
+              this.currentView += this.intProxy[this.intProxy.length - 1]
+            } else {
+              this.currentView = this.currentView.slice(0,-1)
+            }
             
           } else {
             this.currentView = this.intProxy[0];
@@ -71,13 +81,22 @@ export default class Calculator {
       this.screen.value = this.currentView;
     }
 
-    if(this.remainProxy.length && string !== '.') {
-      console.log('add to remain proxy');
-      //  add to remain proxy
-      this.remainProxy += string; 
-
-      this.screen.value = '' + this.currentView + this.remainProxy
+    if(this.remainProxy.length && string !== '.' ) {
+      if(string !== 'del'){
+        //  add to remain proxy
+        this.remainProxy += string; 
+        this.screen.value = '' + this.currentView + this.remainProxy
+      } else {
+        this.remainProxy = this.remainProxy.slice(0,-1);
+        this.screen.value = '' + this.currentView + this.remainProxy
+      }
     }
+
+    // if(string === 'del'){
+    //   if(!this.remainProxy.length && this.intProxy.length){
+    //     this.intProxy.slice(0,-1)
+    //   }
+    // }
    
    
     // if(string === 'del'){
@@ -142,8 +161,13 @@ export default class Calculator {
         // console.log(this.currentView, newNum);
         // this.currentView = newNum;
         this.setCurrent = 'del';
-        this.screen.value = this.currentView
-        this.screen.innerHTML = this.currentView
+        // if(!this.remainProxy.length){
+        //   this.screen.value = "" + this.currentView.slice(0, -1);
+        // } else {
+
+        //   this.screen.value = "" + this.currentView + this.remainProxy;
+        // }
+        // this.screen.innerHTML = this.currentView
       }
     // console.log(this.screen);
   }
@@ -155,6 +179,7 @@ export default class Calculator {
   reset = () => {
     this.currentView = '';
     this.intProxy = '';
+    this.remainProxy = '';
   }
 
  handleInput = (string) => {
