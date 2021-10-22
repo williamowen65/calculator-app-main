@@ -131,10 +131,11 @@ body {
   display: inherit;
   position: absolute;
   top: 7px;
-  right: 9px;
+  right: -2px;
 }
 .calc header .theme datalist option {
-  padding: 0 5px;
+  padding: 0 7px;
+  cursor: pointer;
 }
 .calc input[name=total] {
   width: 100%;
@@ -145,6 +146,7 @@ body {
   background: #182034;
   border: none;
   padding: 0 25px;
+  padding-top: 7px;
 }
 .calc form {
   display: grid;
