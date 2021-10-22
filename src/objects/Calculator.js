@@ -35,9 +35,13 @@ export default class Calculator {
         if(string !== 'del'){
           this.intProxy += string; 
         } else {
-          this.intProxy = this.intProxy.slice(0,-1);
+          if(this.intProxy.length > 1){
+            this.intProxy = this.intProxy.slice(0,-1);
+          } else {
+            this.intProxy = '';
+          }
         }
-        console.log(this.intProxy);
+        // console.log(this.intProxy);
       // }
       // Add to intProxy
       if(this.intProxy.length > 3) {
@@ -70,11 +74,27 @@ export default class Calculator {
 
               this.currentView += this.intProxy[this.intProxy.length - 1]
             } else {
-              this.currentView = this.currentView.slice(0,-1)
+              if (this.currentView.length === 5){
+                const arrCurrentView = Array.from(this.currentView)
+                const fixCurrentView = _.without(arrCurrentView, ',')
+                this.currentView = fixCurrentView.slice(0,-1).join('')
+              } else {
+                // console.log(this.currentView.slice(0,-1));
+
+                if(this.currentView.length >= 1){
+
+                  this.currentView = this.currentView.slice(0,-1);
+                }
+              }
             }
             
           } else {
-            this.currentView = this.intProxy[0];
+            if(this.intProxy.length === 1 ){
+
+              this.currentView = this.intProxy[0];
+            } else {
+              this.currentView = ''
+            }
             this.intProxy = ''
           }
         }
@@ -92,44 +112,7 @@ export default class Calculator {
       }
     }
 
-    // if(string === 'del'){
-    //   if(!this.remainProxy.length && this.intProxy.length){
-    //     this.intProxy.slice(0,-1)
-    //   }
-    // }
    
-   
-    // if(string === 'del'){
-    //   this.intProxy.slice(0, -1);
-    //   console.log('delete');
-
-
-    // } else {
-
-    //   this.intProxy += string; 
-    // }
-    // // console.log(arrString);\
-    // if(this.intProxy.length > 3) {
-    //   const arrString = Array.from(this.intProxy);
-    //   const revArrString = _.reverse(arrString)
-    //   const chunkRevArrString = _.chunk(revArrString, 3);
-    //   chunkRevArrString.forEach((arr, i) => {
-    //     if(arr.length === 3 && i !== chunkRevArrString.length - 1){
-    //       arr.push(',')
-    //     }
-    //   })
-    //   const flatArr = _.flatten(chunkRevArrString);
-    //   const newArr = _.reverse(flatArr);
-    //   const newString = _.join(newArr, '');
-    //   console.log(newString);
-      
-    //   this.currentView = newString
-     
-    // } else {
-    //   this.currentView += string
-    // }
-    // this.screen.value = this.currentView;
-
   }
 
 
