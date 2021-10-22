@@ -4,7 +4,8 @@ export default class Calculator {
   screen;
   currentView = "";
   addition = "";
-  currentProxy = "";
+  intProxy = "";
+  remainProxy = "";
 
   constructor(el) {
     this.screen = el.querySelector('.total');
@@ -16,47 +17,98 @@ export default class Calculator {
   }
 
   set setCurrent(string) {
-    // console.log(string);
-    if(string === 'del'){
-      this.currentProxy.slice(0, -1);
-      console.log('delete');
 
-      
-    } else {
+    // console.log(string, !this.intProxy.length, typeof string );
+    
 
-      this.currentProxy += string; 
-    }
-    // console.log(arrString);\
-    if(this.currentProxy.length > 3) {
-      const arrString = Array.from(this.currentProxy);
-      const revArrString = _.reverse(arrString)
-      const chunkRevArrString = _.chunk(revArrString, 3);
-      chunkRevArrString.forEach((arr, i) => {
-        if(arr.length === 3 && i !== chunkRevArrString.length - 1){
-          arr.push(',')
-        }
-      })
-      const flatArr = _.flatten(chunkRevArrString);
-      const newArr = _.reverse(flatArr);
-      const newString = _.join(newArr, '');
-      console.log(newString);
-      
+    if(string === '.'){
+      this.remainProxy = '.';
+      this.screen.value = '' + this.currentView + this.remainProxy
+    } 
 
-      // for(let i = arrString.length; i >= 1; i--){
-      //   // console.log("i: ", i);
-      //   const position = arrString.length - i + 1;
-      //   if(!(position % 3)){
-      //     console.log("pos: ", position);
-      //     // console.log("string ",arrString[i - 1]);
-      //     arrString.splice(i - 1, 0, ',');
-      //     console.log(arrString.join(''));
-      //   }
+    if(!this.remainProxy.length) {
+      // if(!this.intProxy.length && string == '0' || this.intProxy[0] == '0' && string == '0'){
+      //   console.log('zero');
+      //   this.intProxy = '0'; 
+        
+      // } else {
+        this.intProxy += string; 
       // }
-      this.currentView = newString
-     
-    } else {
-      this.currentView += string
+      // Add to intProxy
+      if(this.intProxy.length > 3) {
+          const arrString = Array.from(this.intProxy);
+          const revArrString = _.reverse(arrString)
+          const chunkRevArrString = _.chunk(revArrString, 3);
+          chunkRevArrString.forEach((arr, i) => {
+            if(arr.length === 3 && i !== chunkRevArrString.length - 1){
+              arr.push(',')
+            }
+          })
+          const flatArr = _.flatten(chunkRevArrString);
+          const newArr = _.reverse(flatArr);
+          const newString = _.join(newArr, '');
+          // console.log(newString);
+          
+          this.currentView = newString
+          
+        } else {
+          if(+this.intProxy){
+            if(this.currentView[0] == '0'){
+              const arrString = Array.from(this.currentView)
+              this.currentView = arrString.splice(1,1).join('');
+              // this.screen.value = this.currentView;
+              console.log(this.currentView);
+            }
+            console.log('int: ', this.intProxy);
+            console.log(this.intProxy[0] == '0', this.intProxy);
+            this.currentView += this.intProxy[this.intProxy.length - 1]
+            
+          } else {
+            this.currentView = this.intProxy[0];
+            this.intProxy = ''
+          }
+        }
+      this.screen.value = this.currentView;
     }
+
+    if(this.remainProxy.length && string !== '.') {
+      console.log('add to remain proxy');
+      //  add to remain proxy
+      this.remainProxy += string; 
+
+      this.screen.value = '' + this.currentView + this.remainProxy
+    }
+   
+   
+    // if(string === 'del'){
+    //   this.intProxy.slice(0, -1);
+    //   console.log('delete');
+
+
+    // } else {
+
+    //   this.intProxy += string; 
+    // }
+    // // console.log(arrString);\
+    // if(this.intProxy.length > 3) {
+    //   const arrString = Array.from(this.intProxy);
+    //   const revArrString = _.reverse(arrString)
+    //   const chunkRevArrString = _.chunk(revArrString, 3);
+    //   chunkRevArrString.forEach((arr, i) => {
+    //     if(arr.length === 3 && i !== chunkRevArrString.length - 1){
+    //       arr.push(',')
+    //     }
+    //   })
+    //   const flatArr = _.flatten(chunkRevArrString);
+    //   const newArr = _.reverse(flatArr);
+    //   const newString = _.join(newArr, '');
+    //   console.log(newString);
+      
+    //   this.currentView = newString
+     
+    // } else {
+    //   this.currentView += string
+    // }
     // this.screen.value = this.currentView;
 
   }
@@ -68,7 +120,11 @@ export default class Calculator {
   }
 
   enter = (string) => {
-    this.setCurrent = string;
+    if(string === '.' && !this.intProxy.includes('.')){
+      this.setCurrent = string;
+    } else if (/[0-9]/.test(string)){
+      this.setCurrent = string;
+    }
     // this.currentView += string; 
     // this.screen.value = this.currentView;
   }
@@ -78,17 +134,14 @@ export default class Calculator {
     this.currentView = "";
     console.log(this.addition);
   }
-  period = (string) => {
-    console.log('period');
-  }
+ 
   delete = (e) => {
       // console.log('event: ', e);
       if(e){
-        console.log('trying to delete');
-        // const newNum = this.currentProxy.slice(0, -1);
+        // const newNum = this.intProxy.slice(0, -1);
         // console.log(this.currentView, newNum);
         // this.currentView = newNum;
-        this.setCurrent('del')
+        this.setCurrent = 'del';
         this.screen.value = this.currentView
         this.screen.innerHTML = this.currentView
       }
@@ -99,13 +152,15 @@ export default class Calculator {
     console.log('=====');
   }
 
+  reset = () => {
+    this.currentView = '';
+    this.intProxy = '';
+  }
+
  handleInput = (string) => {
     // console.log(string);
     if(/\/|\+|-|x/.test(string)){
         this.operator(string);
-    } 
-    else if(/\./.test(string)){
-        this.period(string);
     } 
     else if(/=/.test(string)){
         this.submit(string);
@@ -114,11 +169,11 @@ export default class Calculator {
         this.delete(string);
     } 
     else if(/reset/.test(string)){
-        this.reset(string);
-    } else if(/[0-9]/.test(string)){
+        this.reset();
+    } else if(/[0-9]|\./.test(string)){
       this.enter(string);
     }
-    this.screen.value = this.currentView
+    // this.screen.value = this.currentView
   }
 
   handleClick = (e) => {
