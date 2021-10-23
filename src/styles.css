@@ -1,4 +1,14 @@
 /* //Theme 1 */
+@media (prefers-color-scheme: dark) {
+  h1:after {
+    content: "Dark";
+  }
+}
+@media (prefers-color-scheme: light) {
+  h1:after {
+    content: "light";
+  }
+}
 input[type=range] {
   width: 100%;
   margin: -3.4px 0;
@@ -93,6 +103,16 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /* //Theme 1 */
+@media (prefers-color-scheme: dark) {
+  h1:after {
+    content: "Dark";
+  }
+}
+@media (prefers-color-scheme: light) {
+  h1:after {
+    content: "light";
+  }
+}
 body {
   background: #3a4764;
   display: flex;
