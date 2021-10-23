@@ -277,14 +277,12 @@ export default class Calculator {
   }
 
  handleRequest = (string) => {
-    console.log(string);
+    console.log(string, 'handleReq');
     if(/\/|\+|-|x/.test(string)){
         this.operator(string);
-        
-
     } 
     else if(/=/.test(string)){
-        this.submit(string);
+        this.submit();
     } 
     else if(/del/.test(string)){
         this.delete(string);
@@ -296,6 +294,7 @@ export default class Calculator {
   }
 
   handleClick = (e) => {
+    // console.log(e);
     if(e.target.type === 'button'){
      this.handleRequest(e.target.value);
       
@@ -318,11 +317,17 @@ export default class Calculator {
       } 
     })
     window.addEventListener('keydown', e => {
+      // console.log(e.key );
+      // e.stop(); 
+      e.preventDefault()
       if(/Backspace/.test(e.key)){
         this.delete(e)
       } else if(/[0-9]|\/|\+|-|x|\./.test(e.key)){
         this.handleRequest(e.key)
       } 
+      else if(/ /.test(e.key)){
+        this.submit();
+       } 
     })
   }
   configureKey = (el) => {
