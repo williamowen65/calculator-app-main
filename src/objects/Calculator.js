@@ -3,7 +3,10 @@ import _ from 'lodash'
 export default class Calculator {
   screen;
   currentView = "";
-  addition = "";
+  addition = {
+    text: '',
+    operator: ''
+  };
   intProxy = "";
   remainProxy = "";
 
@@ -23,8 +26,8 @@ export default class Calculator {
 
     if(string === '.'){
       this.remainProxy = '.';
-      if(this.addition){
-        this.screen.value = this.addition + this.currentView + this.remainProxy
+      if(this.addition.text){
+        this.screen.value = this.addition.text + this.currentView + this.remainProxy
       }else{
         this.screen.value = '' + this.currentView + this.remainProxy
       }
@@ -104,8 +107,8 @@ export default class Calculator {
           }
         }
       
-      if(this.addition){
-        this.screen.value = this.addition + this.currentView
+      if(this.addition.text){
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView;
       }else{
         this.screen.value = this.currentView;
       }
@@ -116,8 +119,8 @@ export default class Calculator {
         //  add to remain proxy
         this.remainProxy += string; 
 
-        if(this.addition){
-          this.screen.value = this.addition + this.currentView + this.remainProxy
+        if(this.addition.text){
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
         }else{
           this.screen.value = '' + this.currentView + this.remainProxy
         }
@@ -125,9 +128,8 @@ export default class Calculator {
       } else {
         this.remainProxy = this.remainProxy.slice(0,-1);
 
-        if(this.addition){
-          this.screen.value = this.addition + this.currentView
-          this.screen.value = this.addition + this.currentView + this.remainProxy
+        if(this.addition.text){
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
         }else{
           this.screen.value = '' + this.currentView + this.remainProxy
         }
@@ -158,9 +160,11 @@ export default class Calculator {
       // const num1 = this.addition
     }
     if(!this.remainProxy.length){
-      this.addition += this.currentView + ` ${string} `;
+      this.addition.text = +this.addition.text + +this.currentView;
+      this.addition.operator =  ` ${string} `;
     } else {
-      this.addition += '' + this.currentView + this.remainProxy + ` ${string} `;
+      this.addition.text = +this.addition.text + +this.currentView + +this.remainProxy ;
+      this.addition.operator =  ` ${string} `;
     }
 
     
@@ -168,7 +172,7 @@ export default class Calculator {
     this.intProxy = "";
     this.remainProxy = "";
     this.currentView = "";
-    this.screen.value = this.addition;
+    this.screen.value = this.addition.text + " " + this.addition.operator;
 
     console.log(this.addition);
   }
