@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import exactMath from 'exact-math';
+import Themes from './Themes';
 
 export default class Calculator {
   screen;
@@ -171,7 +172,7 @@ export default class Calculator {
     }
   }
   configureTheme = (input) => {
-    // console.log('theme', input);
+    new Themes(input)
   }
   configureTotal = (input) => {
     console.log('total', input);
@@ -186,7 +187,7 @@ export default class Calculator {
       } 
     })
     window.addEventListener('keydown', e => {
-      // console.log(e.key );
+      console.log(e.key );
       // e.stop(); 
       e.preventDefault()
       if(/Backspace/.test(e.key)){
@@ -197,6 +198,8 @@ export default class Calculator {
         this.submit();
        } else if(/Enter/.test(e.key)){
         this.submit();
+       } else if(/Esc/.test(e.key)){
+        this.reset();
        } 
     })
   }
@@ -209,24 +212,21 @@ export default class Calculator {
     console.log(el);
     el.addEventListener('click', () => this.delete())
   }
+  reset = () => {
+    this.currentView = {
+      text: '',
+      number: '',
+    };
+    this.addition = {
+      text: '',
+      number: '',
+      operator: ''
+    };
+   this.print()
+  }
   configureReset = (el) => {
     console.log(el);
-    el.addEventListener('click', () => {
-      this.currentView = {
-        text: '',
-        number: '',
-      };
-      this.addition = {
-        text: '',
-        number: '',
-        operator: ''
-      };
-     this.print()
-    
-      // console.log("reset");
-      // console.log("screen: ", this.screen.value);
-      // console.log("currentView.text: ", this.currentView.text);
-    })
+    el.addEventListener('click', this.reset)
   }
   configureSubmit = (el) => {
     el.parentElement.addEventListener('submit', (e) => {
