@@ -37,7 +37,7 @@ export default class Calculator {
 
     const revArrString = _.reverse(arrString)
     const chunkRevArrString = _.chunk(revArrString, 3);
-    console.log(chunkRevArrString);
+    // console.log(chunkRevArrString);
     chunkRevArrString.forEach((arr, i) => {
       if(arr.length === 3 && i !== chunkRevArrString.length - 1){
         arr.push(',')
@@ -46,7 +46,7 @@ export default class Calculator {
     const flatArr = _.flatten(chunkRevArrString);
     const newArr = _.reverse(flatArr);
     const newString = _.join(newArr, '');
-    console.log('new str: ', chunkRevArrString);
+    // console.log('new str: ', chunkRevArrString);
     if(remainder){
       return newString + remainder;
     }
@@ -55,9 +55,6 @@ export default class Calculator {
 
 
 
-  format = () => {
-    console.log('sets string commas');
-  }
 
  
 
@@ -98,14 +95,14 @@ export default class Calculator {
 
     }
 
-    console.log('submit');
+    // console.log('submit');
     this.print()
   }
 
   print = () => {
     this.addition.operator ? this.screen.value = this.addition.text + ' ' + this.addition.operator + ' ' + this.currentView.text : this.screen.value = this.currentView.text;
-    console.log(this.currentView);
-    console.log(this.addition);
+    // console.log(this.currentView);
+    // console.log(this.addition);
   }
   
   checkPeriod = () => {
@@ -136,7 +133,7 @@ export default class Calculator {
     } else if (this.currentView.number.length){
       this.addition.number = "" + exactMath.formula(this.addition.number + " " + this.addition.operator + " " + this.currentView.number);
       this.addition.text = this.processToComma(this.addition.number)
-      console.log(string);
+      // console.log(string);
       this.addition.operator = string;
       this.currentView.number = ''
       this.currentView.text = ''
@@ -147,7 +144,7 @@ export default class Calculator {
   }
 
  handleRequest = (string) => {
-    console.log(string, 'handleReq');
+    // console.log(string, 'handleReq');
     if(/\/|\+|-|x/.test(string)){
         this.operator(string);
     } 
@@ -175,7 +172,7 @@ export default class Calculator {
     new Themes(input)
   }
   configureTotal = (input) => {
-    console.log('total', input);
+    // console.log('total', input);
     input.addEventListener('keydown', (e) => {
       e.preventDefault();
       e.stopPropagation();
@@ -187,7 +184,7 @@ export default class Calculator {
       } 
     })
     window.addEventListener('keydown', e => {
-      console.log(e.key );
+      // console.log(e.key );
       // e.stop(); 
       e.preventDefault()
       if(/Backspace/.test(e.key)){
@@ -209,7 +206,7 @@ export default class Calculator {
 
   }
   configureDel = (el) => {
-    console.log(el);
+    // console.log(el);
     el.addEventListener('click', () => this.delete())
   }
   reset = () => {
@@ -225,7 +222,7 @@ export default class Calculator {
    this.print()
   }
   configureReset = (el) => {
-    console.log(el);
+    // console.log(el);
     el.addEventListener('click', this.reset)
   }
   configureSubmit = (el) => {
