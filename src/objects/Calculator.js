@@ -25,8 +25,10 @@ export default class Calculator {
 
   processToComma = (string) => {
     let toString = "" + string;
+    let remainder;
     if (toString.includes('.')){
       toString = _.split(toString, '.')
+      remainder = '.' + toString[1]
       toString = toString[0]
     }
     const arrString = Array.from(toString);
@@ -44,14 +46,14 @@ export default class Calculator {
     const newArr = _.reverse(flatArr);
     const newString = _.join(newArr, '');
     console.log('new str: ', chunkRevArrString);
+    if(remainder){
+      return newString + remainder;
+    }
     return newString
   }
 
-  set setCurrent(string) {
 
-    // console.log(string, !this.intProxy.length, typeof string );
-    
-    ///sets remainProxy
+  checkPeriod = (string) => {
     if(string === '.'){
       this.remainProxy = '.';
       if(this.addition.text){
@@ -59,7 +61,15 @@ export default class Calculator {
       }else{
         this.screen.value = '' + this.currentView.text + this.remainProxy
       }
-    } 
+    }
+  }
+
+  set setCurrent(string) {
+
+    // console.log(string, !this.intProxy.length, typeof string );
+    
+    ///sets remainProxy
+    this.checkPeriod();
 
     if(!this.remainProxy.length) {
       // if(!this.intProxy.length && string == '0' || this.intProxy[0] == '0' && string == '0'){
@@ -185,8 +195,8 @@ export default class Calculator {
       // this.addition.text = +this.addition.text + +this.currentView.text;
       this.addition.operator =  ` ${string} `;
     } else {
-      this.addition.number = +_.split(this.addition.text, ',').join('') + +_.split(this.currentView.text, ',').join('') + +_.split(this.remainProxy, ',').join('') ;
-      this.addition.text = this.processToComma(+this.addition.text + +this.currentView.text) + +this.remainProxy ;
+      this.addition.number = +_.split(this.addition.number + +this.currentView.text, ',').join('') + +this.remainProxy ;
+      this.addition.text = this.processToComma(this.addition.number) ;
       this.addition.operator =  ` ${string} `;
     }
 
@@ -197,7 +207,8 @@ export default class Calculator {
     this.currentView.text = "";
     this.screen.value = this.addition.text + " " + this.addition.operator;
 
-    console.log(this.addition);
+    console.log('addition: ', this.addition, typeof this.addition.number);
+    console.log('current: ', this.currentView);
   }
  
   delete = (e) => {
@@ -211,11 +222,6 @@ export default class Calculator {
     console.log('=====');
   }
 
-  reset = () => {
-    this.currentView.text = '';
-    this.intProxy = '';
-    this.remainProxy = '';
-  }
 
  handleInput = (string) => {
     // console.log(string);
@@ -227,9 +233,6 @@ export default class Calculator {
     } 
     else if(/del/.test(string)){
         this.delete(string);
-    } 
-    else if(/reset/.test(string)){
-        this.reset();
     } else if(/[0-9]|\./.test(string)){
       this.enter(string);
     }
@@ -278,8 +281,15 @@ export default class Calculator {
   configureReset = (el) => {
     console.log(el);
     el.addEventListener('click', () => {
-      this.currentView.text = "";
-      this.addition = "";
+      this.currentView = {
+        text: '',
+        number: null,
+      };
+      this.addition = {
+        text: '',
+        number: null,
+        operator: ''
+      };
       this.screen.value = '';
       this.screen.innerHTML = '';
       // console.log("reset");
