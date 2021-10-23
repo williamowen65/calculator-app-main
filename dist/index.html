@@ -9,10 +9,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@700&display=swap" rel="stylesheet">
   <title>Frontend Mentor | Calculator app</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="../src/styles.css">
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; position: absolute; bottom: 10px; }
+    .attribution { font-size: 11px; text-align: center;position: absolute; bottom: 10px; left: 50%; white-space: nowrap; transform: translateX(-50%);}
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
 
@@ -24,7 +24,7 @@
     <h1 class="title">calc</h1>
     <div class="theme">
       <p>theme</p>
-      <input type="range" name="theme" id="theme" value="1" min="1" max="3" list="tickmarks">
+      <input type="range" name="theme" id="theme" value="1" min="1" max="3" list="tickmarks" >
       <datalist id="tickmarks">
         <option value="1" label="1">1</option>
         <option value="2" label="2">2</option>
@@ -33,9 +33,9 @@
     </div>
   </header>
   <div>
-    <input type="text" name="total" class="total">
+    <input type="text" name="total" class="total" autocomplete="off">
   </div>
-  <form onsubmit="calc" class="keys">
+  <form class="keys">
     <input type="button" value="7">
     <input type="button" value="8">
     <input type="button" value="9">
@@ -53,7 +53,7 @@
     <input type="button" value="/">
     <input type="button" value="x">
     <input type="button" value="reset" class="reset">
-    <input type="button" value="=" class="submit">
+    <input type="submit" value="=" class="submit">
   </form>
 
   </div>
@@ -64,5 +64,6 @@
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="https://www.linkedin.com/in/webdevpreneur29/">William Owen</a>.
   </div>
+  <script src="main.js"></script>
 </body>
 </html>
