@@ -23,7 +23,12 @@ export default class Calculator {
 
     if(string === '.'){
       this.remainProxy = '.';
-      this.screen.value = '' + this.currentView + this.remainProxy
+      if(this.addition){
+        this.screen.value = this.addition + this.currentView + this.remainProxy
+      }else{
+        this.screen.value = '' + this.currentView + this.remainProxy
+      }
+
     } 
 
     if(!this.remainProxy.length) {
@@ -98,17 +103,34 @@ export default class Calculator {
             this.intProxy = ''
           }
         }
-      this.screen.value = this.currentView;
+      
+      if(this.addition){
+        this.screen.value = this.addition + this.currentView
+      }else{
+        this.screen.value = this.currentView;
+      }
     }
 
     if(this.remainProxy.length && string !== '.' ) {
       if(string !== 'del'){
         //  add to remain proxy
         this.remainProxy += string; 
-        this.screen.value = '' + this.currentView + this.remainProxy
+
+        if(this.addition){
+          this.screen.value = this.addition + this.currentView + this.remainProxy
+        }else{
+          this.screen.value = '' + this.currentView + this.remainProxy
+        }
+
       } else {
         this.remainProxy = this.remainProxy.slice(0,-1);
-        this.screen.value = '' + this.currentView + this.remainProxy
+
+        if(this.addition){
+          this.screen.value = this.addition + this.currentView
+          this.screen.value = this.addition + this.currentView + this.remainProxy
+        }else{
+          this.screen.value = '' + this.currentView + this.remainProxy
+        }
       }
     }
 
@@ -132,27 +154,30 @@ export default class Calculator {
   }
 
   operator = (string) => {
-    this.addition += this.currentView + ` ${string} `;
+    if(this.addition.length){
+      // const num1 = this.addition
+    }
+    if(!this.remainProxy.length){
+      this.addition += this.currentView + ` ${string} `;
+    } else {
+      this.addition += '' + this.currentView + this.remainProxy + ` ${string} `;
+    }
+
+    
+
+    this.intProxy = "";
+    this.remainProxy = "";
     this.currentView = "";
+    this.screen.value = this.addition;
+
     console.log(this.addition);
   }
  
   delete = (e) => {
       // console.log('event: ', e);
       if(e){
-        // const newNum = this.intProxy.slice(0, -1);
-        // console.log(this.currentView, newNum);
-        // this.currentView = newNum;
         this.setCurrent = 'del';
-        // if(!this.remainProxy.length){
-        //   this.screen.value = "" + this.currentView.slice(0, -1);
-        // } else {
-
-        //   this.screen.value = "" + this.currentView + this.remainProxy;
-        // }
-        // this.screen.innerHTML = this.currentView
       }
-    // console.log(this.screen);
   }
 
   submit = () => {
@@ -209,7 +234,7 @@ export default class Calculator {
     window.addEventListener('keydown', e => {
       if(/Backspace/.test(e.key)){
         this.delete(e)
-      } else if(/[0-9]|\/|\+|-|x/.test(e.key)){
+      } else if(/[0-9]|\/|\+|-|x|\./.test(e.key)){
         this.handleInput(e.key)
       } 
     })
@@ -236,8 +261,12 @@ export default class Calculator {
     })
   }
   configureSubmit = (el) => {
-    // console.log('handle submit', el);
+    el.parentElement.addEventListener('submit', (e) => {
+      e.preventDefault();
+      console.log(this.addition, this.currentView);
+    })
   }
+
   configure = () => {
     const inputs = document.querySelectorAll('input');
     inputs.forEach(input => {
