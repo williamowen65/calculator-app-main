@@ -49,7 +49,7 @@ export default class Calculator {
 
     // console.log(string, !this.intProxy.length, typeof string );
     
-
+    ///sets remainProxy
     if(string === '.'){
       this.remainProxy = '.';
       if(this.addition.text){
@@ -57,7 +57,6 @@ export default class Calculator {
       }else{
         this.screen.value = '' + this.currentView.text + this.remainProxy
       }
-
     } 
 
     if(!this.remainProxy.length) {
@@ -184,7 +183,7 @@ export default class Calculator {
       // this.addition.text = +this.addition.text + +this.currentView.text;
       this.addition.operator =  ` ${string} `;
     } else {
-      this.addition.number = +this.addition.text + +this.currentView.text + +this.remainProxy ;
+      this.addition.number = +_.split(this.addition.text, ',').join('') + +_.split(this.currentView.text, ',').join('') + +_.split(this.remainProxy, ',').join('') ;
       this.addition.text = this.processToComma(+this.addition.text + +this.currentView.text) + +this.remainProxy ;
       this.addition.operator =  ` ${string} `;
     }
