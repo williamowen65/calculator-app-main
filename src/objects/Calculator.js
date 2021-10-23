@@ -25,11 +25,13 @@ export default class Calculator {
 
   processToComma = (string) => {
     let toString = "" + string;
-    // const isFloat = toString.indexOf('.')
-    // if(isFloat != -1){
-    //   toString = toString.split(0, toString[isFloat] - 1)
-    // }
+    if (toString.includes('.')){
+      toString = _.split(toString, '.')
+      toString = toString[0]
+    }
     const arrString = Array.from(toString);
+    // const arrString = Array.from(_.split(toString, '.'));
+
     const revArrString = _.reverse(arrString)
     const chunkRevArrString = _.chunk(revArrString, 3);
     console.log(chunkRevArrString);
