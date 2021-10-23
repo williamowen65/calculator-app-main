@@ -12,8 +12,7 @@ export default class Calculator {
     number: '',
     operator: ''
   };
-  // intProxy = "";
-  // remainProxy = "";
+ 
 
   constructor(el) {
     this.screen = el.querySelector('.total');
@@ -54,136 +53,6 @@ export default class Calculator {
   }
 
 
-  // checkPeriod = (string) => {
-  //   if(string === '.'){
-  //     this.remainProxy = '.';
-  //     if(this.addition.text){
-  //       this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
-  //     }else{
-  //       this.screen.value = '' + this.currentView.text + this.remainProxy
-  //     }
-  //   }
-  // }
-  
-  // deleteBackOne = (string) => {
-  //   if(!this.remainProxy.length && string === 'del') {
-  //     if(this.intProxy.length > 1){
-  //       this.intProxy = this.intProxy.slice(0,-1);
-  //     } else {
-  //       this.intProxy = '';
-  //     }
-  //   } 
-  //   if(this.remainProxy.length && string === 'del' ) {
-
-  //   }
-      
-  // }
-
-  // set setCurrent(string) {
-
-  //   // console.log(string, !this.intProxy.length, typeof string );
-    
-  //   ///sets remainProxy
-  //   // this.checkPeriod();
-
-  //   if(!this.remainProxy.length) {
-  //     // if(!this.intProxy.length && string == '0' || this.intProxy[0] == '0' && string == '0'){
-  //     //   console.log('zero');
-  //     //   this.intProxy = '0'; 
-        
-  //     // } else {
-  //       if(string !== 'del'){
-  //         this.intProxy += string; 
-  //       } 
-  //       else {
-  //         if(this.intProxy.length > 1){
-  //           this.intProxy = this.intProxy.slice(0,-1);
-  //         } else {
-  //           this.intProxy = '';
-  //         }
-  //       }
-  //       // console.log(this.intProxy);
-  //     // }
-  //     // Add to intProxy
-  //     if(this.intProxy.length > 3) {
-     
-
-  //         const newString = this.processToComma(this.intProxy)
-          
-  //         this.currentView.text = newString
-          
-  //       } else {
-  //         if(+this.intProxy){
-  //           if(this.currentView.text[0] == '0'){
-  //             const arrString = Array.from(this.currentView.text)
-  //             this.currentView.text = arrString.splice(1,1).join('');
-  //             // this.screen.value = this.currentView.text;
-  //             console.log(this.currentView.text);
-  //           }
-  //           console.log('int: ', this.intProxy);
-  //           console.log(this.intProxy[0] == '0', this.intProxy);
-  //           if(string !== 'del'){
-
-  //             this.currentView.text += this.intProxy[this.intProxy.length - 1]
-  //           } else {
-  //             if (this.currentView.text.length === 5){
-  //               const arrCurrentView = Array.from(this.currentView.text)
-  //               const fixCurrentView = _.without(arrCurrentView, ',')
-  //               this.currentView.text = fixCurrentView.slice(0,-1).join('')
-  //             } else {
-  //               // console.log(this.currentView.text.slice(0,-1));
-
-  //               if(this.currentView.text.length >= 1){
-
-  //                 this.currentView.text = this.currentView.text.slice(0,-1);
-  //               }
-  //             }
-  //           }
-            
-  //         } else {
-  //           if(this.intProxy.length === 1 ){
-
-  //             this.currentView.text = this.intProxy[0];
-  //           } else {
-  //             this.currentView.text = ''
-  //           }
-  //           this.intProxy = ''
-  //         }
-  //       }
-      
-  //     if(this.addition.text){
-  //         this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text;
-  //     }else{
-  //       this.screen.value = this.currentView.text;
-  //     }
-  //   }
-
-  //   if(this.remainProxy.length && string !== '.' ) {
-  //     if(string !== 'del'){
-  //       //  add to remain proxy
-  //       this.remainProxy += string; 
-
-  //       if(this.addition.text){
-  //         this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
-  //       }else{
-  //         this.screen.value = '' + this.currentView.text + this.remainProxy
-  //       }
-
-  //     } else {
-  //       this.remainProxy = this.remainProxy.slice(0,-1);
-
-  //       if(this.addition.text){
-  //         this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
-  //       }else{
-  //         this.screen.value = '' + this.currentView.text + this.remainProxy
-  //       }
-  //     }
-  //   }
-
-   
-  // }
-
-
 
   format = () => {
     console.log('sets string commas');
@@ -195,7 +64,7 @@ export default class Calculator {
       // console.log('event: ', e);
     if(e){
       //   this.setCurrent = 'del';
-      if(this.currentView.text.length > 1){
+      if(this.currentView.text.length){
         this.currentView.number = this.currentView.number.slice(0,-1)
         this.currentView.text = this.processToComma(this.currentView.number)
       } else {
@@ -324,8 +193,9 @@ export default class Calculator {
         this.delete(e)
       } else if(/[0-9]|\/|\+|-|x|\./.test(e.key)){
         this.handleRequest(e.key)
-      } 
-      else if(/ /.test(e.key)){
+      }  else if(/ /.test(e.key)){
+        this.submit();
+       } else if(/Enter/.test(e.key)){
         this.submit();
        } 
     })
