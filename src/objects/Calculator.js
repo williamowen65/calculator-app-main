@@ -27,7 +27,7 @@ export default class Calculator {
     if(string === '.'){
       this.remainProxy = '.';
       if(this.addition.text){
-        this.screen.value = this.addition.text + this.currentView + this.remainProxy
+        this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
       }else{
         this.screen.value = '' + this.currentView + this.remainProxy
       }
