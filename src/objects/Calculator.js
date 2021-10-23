@@ -1,4 +1,5 @@
 import _ from 'lodash'
+import exactMath from 'exact-math';
 
 export default class Calculator {
   screen;
@@ -63,13 +64,27 @@ export default class Calculator {
       }
     }
   }
+  
+  deleteBackOne = (string) => {
+    if(!this.remainProxy.length && string === 'del') {
+      if(this.intProxy.length > 1){
+        this.intProxy = this.intProxy.slice(0,-1);
+      } else {
+        this.intProxy = '';
+      }
+    } 
+    if(this.remainProxy.length && string === 'del' ) {
+
+    }
+      
+  }
 
   set setCurrent(string) {
 
     // console.log(string, !this.intProxy.length, typeof string );
     
     ///sets remainProxy
-    this.checkPeriod();
+    // this.checkPeriod();
 
     if(!this.remainProxy.length) {
       // if(!this.intProxy.length && string == '0' || this.intProxy[0] == '0' && string == '0'){
@@ -79,7 +94,8 @@ export default class Calculator {
       // } else {
         if(string !== 'del'){
           this.intProxy += string; 
-        } else {
+        } 
+        else {
           if(this.intProxy.length > 1){
             this.intProxy = this.intProxy.slice(0,-1);
           } else {
@@ -190,12 +206,12 @@ export default class Calculator {
     if(!this.remainProxy.length){
       // const total = +this.addition.text + +this.currentView.text;
       // const totalWComma = this.processToComma(total)
-      this.addition.number = +_.split(this.addition.text, ',').join('') + +_.split(this.currentView.text, ',').join('');
+      this.addition.number = exactMath.add(+_.split(this.addition.text, ',').join(''), +_.split(this.currentView.text, ',').join(''));
       this.addition.text = this.processToComma(this.addition.number)
       // this.addition.text = +this.addition.text + +this.currentView.text;
       this.addition.operator =  ` ${string} `;
     } else {
-      this.addition.number = +_.split(this.addition.number + +this.currentView.text, ',').join('') + +this.remainProxy ;
+      this.addition.number = exactMath(+_.split(this.addition.number + +this.currentView.text, ',').join(''), +this.remainProxy) ;
       this.addition.text = this.processToComma(this.addition.number) ;
       this.addition.operator =  ` ${string} `;
     }
@@ -205,7 +221,7 @@ export default class Calculator {
     this.intProxy = "";
     this.remainProxy = "";
     this.currentView.text = "";
-    this.screen.value = this.addition.text + " " + this.addition.operator;
+    this.screen.value = this.addition.text + " " + this.addition.operator + " ";
 
     console.log('addition: ', this.addition, typeof this.addition.number);
     console.log('current: ', this.currentView);
@@ -292,6 +308,8 @@ export default class Calculator {
       };
       this.screen.value = '';
       this.screen.innerHTML = '';
+      this.intProxy = "";
+      this.remainProxy = "";
       // console.log("reset");
       // console.log("screen: ", this.screen.value);
       // console.log("currentView.text: ", this.currentView.text);
