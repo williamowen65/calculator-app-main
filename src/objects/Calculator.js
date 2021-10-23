@@ -2,9 +2,13 @@ import _ from 'lodash'
 
 export default class Calculator {
   screen;
-  currentView = "";
+  currentView = {
+    text: "",
+    number: null
+  };
   addition = {
     text: '',
+    number: null,
     operator: ''
   };
   intProxy = "";
@@ -19,6 +23,28 @@ export default class Calculator {
     
   }
 
+  processToComma = (string) => {
+    let toString = "" + string;
+    // const isFloat = toString.indexOf('.')
+    // if(isFloat != -1){
+    //   toString = toString.split(0, toString[isFloat] - 1)
+    // }
+    const arrString = Array.from(toString);
+    const revArrString = _.reverse(arrString)
+    const chunkRevArrString = _.chunk(revArrString, 3);
+    console.log(chunkRevArrString);
+    chunkRevArrString.forEach((arr, i) => {
+      if(arr.length === 3 && i !== chunkRevArrString.length - 1){
+        arr.push(',')
+      }
+    })
+    const flatArr = _.flatten(chunkRevArrString);
+    const newArr = _.reverse(flatArr);
+    const newString = _.join(newArr, '');
+    console.log('new str: ', chunkRevArrString);
+    return newString
+  }
+
   set setCurrent(string) {
 
     // console.log(string, !this.intProxy.length, typeof string );
@@ -27,9 +53,9 @@ export default class Calculator {
     if(string === '.'){
       this.remainProxy = '.';
       if(this.addition.text){
-        this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
+        this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
       }else{
-        this.screen.value = '' + this.currentView + this.remainProxy
+        this.screen.value = '' + this.currentView.text + this.remainProxy
       }
 
     } 
@@ -53,45 +79,36 @@ export default class Calculator {
       // }
       // Add to intProxy
       if(this.intProxy.length > 3) {
-          const arrString = Array.from(this.intProxy);
-          const revArrString = _.reverse(arrString)
-          const chunkRevArrString = _.chunk(revArrString, 3);
-          chunkRevArrString.forEach((arr, i) => {
-            if(arr.length === 3 && i !== chunkRevArrString.length - 1){
-              arr.push(',')
-            }
-          })
-          const flatArr = _.flatten(chunkRevArrString);
-          const newArr = _.reverse(flatArr);
-          const newString = _.join(newArr, '');
-          // console.log(newString);
+     
+
+          const newString = this.processToComma(this.intProxy)
           
-          this.currentView = newString
+          this.currentView.text = newString
           
         } else {
           if(+this.intProxy){
-            if(this.currentView[0] == '0'){
-              const arrString = Array.from(this.currentView)
-              this.currentView = arrString.splice(1,1).join('');
-              // this.screen.value = this.currentView;
-              console.log(this.currentView);
+            if(this.currentView.text[0] == '0'){
+              const arrString = Array.from(this.currentView.text)
+              this.currentView.text = arrString.splice(1,1).join('');
+              // this.screen.value = this.currentView.text;
+              console.log(this.currentView.text);
             }
             console.log('int: ', this.intProxy);
             console.log(this.intProxy[0] == '0', this.intProxy);
             if(string !== 'del'){
 
-              this.currentView += this.intProxy[this.intProxy.length - 1]
+              this.currentView.text += this.intProxy[this.intProxy.length - 1]
             } else {
-              if (this.currentView.length === 5){
-                const arrCurrentView = Array.from(this.currentView)
+              if (this.currentView.text.length === 5){
+                const arrCurrentView = Array.from(this.currentView.text)
                 const fixCurrentView = _.without(arrCurrentView, ',')
-                this.currentView = fixCurrentView.slice(0,-1).join('')
+                this.currentView.text = fixCurrentView.slice(0,-1).join('')
               } else {
-                // console.log(this.currentView.slice(0,-1));
+                // console.log(this.currentView.text.slice(0,-1));
 
-                if(this.currentView.length >= 1){
+                if(this.currentView.text.length >= 1){
 
-                  this.currentView = this.currentView.slice(0,-1);
+                  this.currentView.text = this.currentView.text.slice(0,-1);
                 }
               }
             }
@@ -99,18 +116,18 @@ export default class Calculator {
           } else {
             if(this.intProxy.length === 1 ){
 
-              this.currentView = this.intProxy[0];
+              this.currentView.text = this.intProxy[0];
             } else {
-              this.currentView = ''
+              this.currentView.text = ''
             }
             this.intProxy = ''
           }
         }
       
       if(this.addition.text){
-          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView;
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text;
       }else{
-        this.screen.value = this.currentView;
+        this.screen.value = this.currentView.text;
       }
     }
 
@@ -120,18 +137,18 @@ export default class Calculator {
         this.remainProxy += string; 
 
         if(this.addition.text){
-          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
         }else{
-          this.screen.value = '' + this.currentView + this.remainProxy
+          this.screen.value = '' + this.currentView.text + this.remainProxy
         }
 
       } else {
         this.remainProxy = this.remainProxy.slice(0,-1);
 
         if(this.addition.text){
-          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView + this.remainProxy
+          this.screen.value = this.addition.text + " " + this.addition.operator + " " + this.currentView.text + this.remainProxy
         }else{
-          this.screen.value = '' + this.currentView + this.remainProxy
+          this.screen.value = '' + this.currentView.text + this.remainProxy
         }
       }
     }
@@ -151,8 +168,8 @@ export default class Calculator {
     } else if (/[0-9]/.test(string)){
       this.setCurrent = string;
     }
-    // this.currentView += string; 
-    // this.screen.value = this.currentView;
+    // this.currentView.text += string; 
+    // this.screen.value = this.currentView.text;
   }
 
   operator = (string) => {
@@ -160,10 +177,15 @@ export default class Calculator {
       // const num1 = this.addition
     }
     if(!this.remainProxy.length){
-      this.addition.text = +this.addition.text + +this.currentView;
+      // const total = +this.addition.text + +this.currentView.text;
+      // const totalWComma = this.processToComma(total)
+      this.addition.number = +_.split(this.addition.text, ',').join('') + +_.split(this.currentView.text, ',').join('');
+      this.addition.text = this.processToComma(this.addition.number)
+      // this.addition.text = +this.addition.text + +this.currentView.text;
       this.addition.operator =  ` ${string} `;
     } else {
-      this.addition.text = +this.addition.text + +this.currentView + +this.remainProxy ;
+      this.addition.number = +this.addition.text + +this.currentView.text + +this.remainProxy ;
+      this.addition.text = this.processToComma(+this.addition.text + +this.currentView.text) + +this.remainProxy ;
       this.addition.operator =  ` ${string} `;
     }
 
@@ -171,7 +193,7 @@ export default class Calculator {
 
     this.intProxy = "";
     this.remainProxy = "";
-    this.currentView = "";
+    this.currentView.text = "";
     this.screen.value = this.addition.text + " " + this.addition.operator;
 
     console.log(this.addition);
@@ -189,7 +211,7 @@ export default class Calculator {
   }
 
   reset = () => {
-    this.currentView = '';
+    this.currentView.text = '';
     this.intProxy = '';
     this.remainProxy = '';
   }
@@ -210,12 +232,12 @@ export default class Calculator {
     } else if(/[0-9]|\./.test(string)){
       this.enter(string);
     }
-    // this.screen.value = this.currentView
+    // this.screen.value = this.currentView.text
   }
 
   handleClick = (e) => {
     if(e.target.type === 'button'){
-      let {currentView, additions} = this.handleInput(e.target.value);
+     this.handleInput(e.target.value);
       
     //  this.screen.value += e.target.value;
     }
@@ -255,19 +277,19 @@ export default class Calculator {
   configureReset = (el) => {
     console.log(el);
     el.addEventListener('click', () => {
-      this.currentView = "";
+      this.currentView.text = "";
       this.addition = "";
       this.screen.value = '';
       this.screen.innerHTML = '';
       // console.log("reset");
       // console.log("screen: ", this.screen.value);
-      // console.log("currentView: ", this.currentView);
+      // console.log("currentView.text: ", this.currentView.text);
     })
   }
   configureSubmit = (el) => {
     el.parentElement.addEventListener('submit', (e) => {
       e.preventDefault();
-      console.log(this.addition, this.currentView);
+      console.log(this.addition, this.currentView.text);
     })
   }
 
