@@ -186,16 +186,20 @@ export default class Calculator {
     window.addEventListener('keydown', e => {
       // console.log(e.key );
       // e.stop(); 
-      e.preventDefault()
       if(/Backspace/.test(e.key)){
+        e.preventDefault()
         this.delete(e)
       } else if(/[0-9]|\/|\+|-|x|\./.test(e.key)){
+        e.preventDefault()
         this.handleRequest(e.key)
       }  else if(/ /.test(e.key)){
+        e.preventDefault()
         this.submit();
-       } else if(/Enter/.test(e.key)){
-        this.submit();
-       } else if(/Esc/.test(e.key)){
+      } else if(/Enter/.test(e.key)){
+         e.preventDefault()
+         this.submit();
+        } else if(/Esc/.test(e.key)){
+         e.preventDefault()
         this.reset();
        } 
     })
