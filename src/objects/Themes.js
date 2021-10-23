@@ -6,15 +6,11 @@ export default class Themes {
     this.input = input
     // console.log('new themes', this.input);
     this.bodyEl = document.querySelector('body')
-    window.matchMedia('(prefers-color-scheme)').onchange = this.change;
-    console.log(  window.matchMedia('(prefers-color-scheme)'));
     this.configure()
     
   }
 
-change = () => {
-  console.log('hi');
-}
+
 
   setTheme = () => {
     switch (this.value) {

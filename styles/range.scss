@@ -12,7 +12,7 @@ input[type=range]:focus {
   outline: none;
 }
 input[type=range]::-webkit-slider-runnable-track {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
   border: none;
   padding: 0 5px;
   border-radius: 24.1px;
@@ -24,7 +24,7 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: 3.2px;
   width: 16px;
   height: 17px;
-  background: $t1-key-background-toggle;
+  background-color: var(--key-background2);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -32,7 +32,7 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]::-moz-range-track {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
   border:  none;
   border-radius: 24.1px;
   width: 100%;
@@ -43,14 +43,14 @@ input[type=range]::-moz-range-track {
 input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 17px;
-  background: $t1-key-background-toggle;
+  background-color: var(--key-background2);
   border: none;
   //  padding: 0 5px;
   border-radius: 50px;
   cursor: pointer;
 }
 input[type=range]::-ms-track {
-  background: transparent;
+  background-color: transparent;
   border-color: transparent;
   padding: 0 5px;
   border-width: 0 0;
@@ -60,19 +60,19 @@ input[type=range]::-ms-track {
   cursor: pointer;
 }
 input[type=range]::-ms-fill-lower {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
   border: 0.2px solid #010101;
   border-radius: 48.2px;
 }
 input[type=range]::-ms-fill-upper {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
   border: 0.2px solid #010101;
   border-radius: 48.2px;
 }
 input[type=range]::-ms-thumb {
   width: 16px;
   height: 17px;
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -80,8 +80,8 @@ input[type=range]::-ms-thumb {
   /*Needed to keep the Edge thumb centred*/
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: $t1-toggle-background;
+  background-color: var(--toggle-background);
 }
