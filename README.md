@@ -39,7 +39,8 @@ Users should be able to:
 
 <br> 
 
-![img](./images/preview.png)
+<!-- ![img](./images/preview.png) -->
+<img src="./images/preview.png" alt="drawing" width="400" />
 
 
 
