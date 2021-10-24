@@ -1,17 +1,20 @@
-:root{
-  --main-background:  hsl(0, 0%, 90%);
-  --toggle-background:  hsl(0, 5%, 81%);
-  --screen-background:  hsl(0, 0%, 93%);
-  
-  --key-background:hsl(185, 42%, 37%);
-  --key-shadow: hsl(185, 58%, 25%);
-  --key-background2: hsl(25, 98%, 40%);
-  --key-shadow2: hsl(25, 99%, 27%);
-  --key-background3: hsl(45, 7%, 89%);
-  --key-shadow3: hsl(35, 11%, 61%);
-  
-  --text-color1: hsl(60, 10%, 19%);
-  --text-color2: hsl(0, 0, 100%);
+:root {
+  .theme2{
+
+    --main-background:  hsl(0, 0%, 90%);
+    --toggle-background:  hsl(0, 5%, 81%);
+    --screen-background:  hsl(0, 0%, 93%);
+    
+    --key-background:hsl(185, 42%, 37%);
+    --key-shadow: hsl(185, 58%, 25%);
+    --key-background2: hsl(25, 98%, 40%);
+    --key-shadow2: hsl(25, 99%, 27%);
+    --key-background3: hsl(45, 7%, 89%);
+    --key-shadow3: hsl(35, 11%, 61%);
+    
+    --text-color1: hsl(60, 10%, 19%);
+    --text-color2: hsl(0, 0%, 100%);
+  }
 }
 
 

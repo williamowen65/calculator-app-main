@@ -5,6 +5,8 @@
   transition: background-color 0.5s, color 1s;
 }
 body {
+
+
   background: var(--main-background);
   // width: 50%;
   // margin: auto;
@@ -94,7 +96,11 @@ input{
 }
 
 .title, .theme, .total {
-  color: var(--text-color1);
+  color: var(--text-color2);
+  .theme2 & {
+    color: var(--text-color1) !important;
+
+  }
 }
 .del, .reset, .theme {
   text-transform: uppercase;
