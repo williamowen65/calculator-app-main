@@ -58,17 +58,18 @@ export default class Themes {
 
   checkForPrefersColor = () => {
     
-    if(window.matchMedia('(prefers-color-scheme: light)').matches){
-      this.bodyEl.setAttribute('class','theme2')
-    }
-    if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-      this.bodyEl.setAttribute('class','theme3')
-    }
     if(window.localStorage.getItem('calc-theme')){
       const theme = window.localStorage.getItem('calc-theme')
       console.log(theme);
       this.bodyEl.setAttribute('class',`${theme}`)
       // console.log('found a theme');
+    } else {
+      if(window.matchMedia('(prefers-color-scheme: light)').matches){
+        this.bodyEl.setAttribute('class','theme2')
+      }
+      if(window.matchMedia('(prefers-color-scheme: dark)').matches){
+        this.bodyEl.setAttribute('class','theme3')
+      }
     }
     this.setToggle()
   }
@@ -79,6 +80,11 @@ export default class Themes {
       this.setTheme();
     })
     this.checkForPrefersColor()
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      this.value = 3;
+      this.checkForPrefersColor()
+      console.log('change');
+    })
   }
 
 }

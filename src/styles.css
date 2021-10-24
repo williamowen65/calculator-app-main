@@ -37,6 +37,36 @@
   --text-color1: hsl(52, 100%, 62%);
   --text-color2: hsl(0, 0%, 100%);
 }
+@media (prefers-color-scheme: dark) {
+  :root .theme3 {
+    --main-background: hsl(268, 75%, 9%);
+    --toggle-background: hsl(268, 71%, 12%);
+    --screen-background: hsl(268, 71%, 12%);
+    --key-background: hsl(281, 89%, 26%);
+    --key-shadow: hsl(285, 91%, 52%);
+    --key-background2: hsl(176, 100%, 44%);
+    --key-shadow2: hsl(177, 92%, 70%);
+    --key-background3: hsl(268, 47%, 21%);
+    --key-shadow3: hsl(290, 70%, 36%);
+    --text-color1: hsl(52, 100%, 62%);
+    --text-color2: hsl(0, 0%, 100%);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root .theme2 {
+    --main-background: hsl(0, 0%, 90%);
+    --toggle-background: hsl(0, 5%, 81%);
+    --screen-background: hsl(0, 0%, 93%);
+    --key-background:hsl(185, 42%, 37%);
+    --key-shadow: hsl(185, 58%, 25%);
+    --key-background2: hsl(25, 98%, 40%);
+    --key-shadow2: hsl(25, 99%, 27%);
+    --key-background3: hsl(45, 7%, 89%);
+    --key-shadow3: hsl(35, 11%, 61%);
+    --text-color1: hsl(60, 10%, 19%);
+    --text-color2: hsl(0, 0%, 100%);
+  }
+}
 
 input[type=range] {
   width: 100%;
@@ -179,9 +209,39 @@ input[type=range]:focus::-ms-fill-upper {
   --text-color1: hsl(52, 100%, 62%);
   --text-color2: hsl(0, 0%, 100%);
 }
+@media (prefers-color-scheme: dark) {
+  :root .theme3 {
+    --main-background: hsl(268, 75%, 9%);
+    --toggle-background: hsl(268, 71%, 12%);
+    --screen-background: hsl(268, 71%, 12%);
+    --key-background: hsl(281, 89%, 26%);
+    --key-shadow: hsl(285, 91%, 52%);
+    --key-background2: hsl(176, 100%, 44%);
+    --key-shadow2: hsl(177, 92%, 70%);
+    --key-background3: hsl(268, 47%, 21%);
+    --key-shadow3: hsl(290, 70%, 36%);
+    --text-color1: hsl(52, 100%, 62%);
+    --text-color2: hsl(0, 0%, 100%);
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root .theme2 {
+    --main-background: hsl(0, 0%, 90%);
+    --toggle-background: hsl(0, 5%, 81%);
+    --screen-background: hsl(0, 0%, 93%);
+    --key-background:hsl(185, 42%, 37%);
+    --key-shadow: hsl(185, 58%, 25%);
+    --key-background2: hsl(25, 98%, 40%);
+    --key-shadow2: hsl(25, 99%, 27%);
+    --key-background3: hsl(45, 7%, 89%);
+    --key-shadow3: hsl(35, 11%, 61%);
+    --text-color1: hsl(60, 10%, 19%);
+    --text-color2: hsl(0, 0%, 100%);
+  }
+}
 
 * {
-  transition: background-color 0.5s, color 1s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 body {
