@@ -47,7 +47,8 @@ Users should be able to:
 ### Links
 
 
-- Live Site URL: [Click here to visit!](https://calculator-challenge-69907.web.app/)
+- Live Site URL: [Click here to visit!](https://williamowen65.github.io/calculator-app-main/dist/)
+- View the code: [GitHub](https://github.com/williamowen65/calculator-app-main)
   
 <br><br><br>
 ## My process
