@@ -145,6 +145,6 @@ I realized that I should have done this project with typescript in hindsight.
 ## Author
 
 - Website - [William Owen](https://web-dev-portfolio-react.web.app/)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- Frontend Mentor - [@williamowen65](https://www.frontendmentor.io/profile/williamowen65)
 - LinkedIn - [@webdevpreneur29](https://www.linkedin.com/in/webdevpreneur29/)
 
