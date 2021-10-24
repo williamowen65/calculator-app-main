@@ -81,6 +81,9 @@ export default class Themes {
     })
     this.checkForPrefersColor()
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      if(localStorage.getItem('calc-theme')){
+        localStorage.clear('calc-theme')
+      }
       this.value = 3;
       this.checkForPrefersColor()
       console.log('change');
