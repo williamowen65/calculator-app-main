@@ -4,6 +4,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 
 ---
 <br>
+
 ## Table of contents
 
 
@@ -21,6 +22,7 @@ This is a solution to the [Calculator app challenge on Frontend Mentor](https://
 <br><br><br>
 ---
 <br>
+
 ## Overview
 
 ### The challenge
@@ -32,7 +34,9 @@ Users should be able to:
 - Adjust the color theme based on their preference
 - **Bonus**: Have their initial theme preference checked using `prefers-color-scheme` and have any additional changes saved in the browser
 <br><br><br>
+
 # Screenshot
+
 <br> 
 
 ![img](./images/preview.png)
