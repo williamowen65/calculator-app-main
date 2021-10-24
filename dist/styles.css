@@ -334,6 +334,9 @@ input {
 .theme2 .title, .theme2 .theme, .theme2 .total {
   color: var(--text-color1) !important;
 }
+.theme3 .title, .theme3 .theme, .theme3 .total {
+  color: var(--text-color1) !important;
+}
 
 .del, .reset, .theme {
   text-transform: uppercase;

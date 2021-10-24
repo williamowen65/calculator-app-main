@@ -99,7 +99,9 @@ input{
   color: var(--text-color2);
   .theme2 & {
     color: var(--text-color1) !important;
-
+  }
+  .theme3 & {
+    color: var(--text-color1) !important;
   }
 }
 .del, .reset, .theme {
