@@ -23,12 +23,16 @@
 
 </head>
 <body>
-  <a href="https://williamowen65.github.io/calculator-app-main/">README.md</a>
+  <aside>
+    <a href="https://williamowen65.github.io/calculator-app-main/">README.md</a>
+  </aside>
+  
+  <main>
   <div class="calc">
   <header>
     <h1 class="title">calc</h1>
     <div class="theme">
-      <p>theme</p>
+      <label for="theme"><p>theme</p></label>
       <input type="range" name="theme" id="theme" value="1" min="1" max="3" list="tickmarks" >
       <datalist id="tickmarks">
         <option value="1" label="1">1</option>
@@ -38,6 +42,7 @@
     </div>
   </header>
   <div>
+    <label for="total"></label>
     <input type="text" name="total" class="total" autocomplete="off">
   </div>
   <form class="keys">
@@ -63,15 +68,16 @@
 
   </div>
 
-
-  
-  <div class="attribution">
-    <div class="ad">Looking for entry level job</div>
-    <div class="">
-      Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-      Coded by <a href="https://www.linkedin.com/in/webdevpreneur29/">William Owen</a>.
+</main>
+  <footer>
+    <div class="attribution">
+      <div class="ad">Looking for entry level job</div>
+      <div class="">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="https://www.linkedin.com/in/webdevpreneur29/">William Owen</a>.
+      </div>
     </div>
-  </div>
+  </footer>
   <script src="main.js"></script>
 </body>
 </html>
